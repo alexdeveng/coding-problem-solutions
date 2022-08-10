@@ -12,12 +12,9 @@ public class Problem205IsomorphicStrings {
         for (int i = 0; i < s.length(); i++) {
             char charS = s.charAt(i);
             char charT = t.charAt(i);
-            if (!mapStoT.containsKey(charS)) {
-                mapStoT.put(charS, charT);
-            }
-            if (!mapTtoS.containsKey(charT)) {
-                mapTtoS.put(charT, charS);
-            }
+            mapStoT.putIfAbsent(charS, charT);
+            mapTtoS.putIfAbsent(charT, charS);
+
             if (mapStoT.get(charS) != charT || mapTtoS.get(charT) != charS) return false;
         }
         return true;
